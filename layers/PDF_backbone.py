@@ -32,27 +32,30 @@ class PDF_backbone(nn.Module):
 
         self.revin_layer = RevIN(c_in, affine=affine, subtract_last=subtract_last)
         self.period_list = period
-        self.period__len = [math.ceil(context_window / i) for i in self.period_list]
-        self.kernel_list = [(n, patch_len[i]) for i, n in enumerate(self.period__len)]
+        self.period_len = [math.ceil(context_window / i) for i in self.period_list]
+        self.kernel_list = [(n, patch_len[i]) for i, n in enumerate(self.period_len)]
         self.stride_list = [(n , m // 2 if stride is None else stride[i]) for i, (n, m) in enumerate(self.kernel_list)]
-        self.d_dim__list = [k[0] * k[1] for k in self.kernel_list]
+        self.dim_list = [k[0] * k[1] for k in self.kernel_list]
         self.tokens_list = [
-            (self.period__len[i] // s[0]) *
+            (self.period_len[i] // s[0]) *
             ((math.ceil(self.period_list[i] / k[1]) * k[1] - k[1]) // s[1] + 1)
             for i, (k, s) in enumerate(zip(self.kernel_list, self.stride_list))
         ]
+
         self.pad_layer = nn.ModuleList([nn.ModuleList([
             nn.ConstantPad1d((0, p-context_window%p), 0)if context_window % p != 0 else nn.Identity(),
             nn.ConstantPad1d((0, k[1] - p % k[1]), 0) if p % k[1] != 0 else nn.Identity()
         ]) for p, (k, s) in zip(self.period_list, zip(self.kernel_list, self.stride_list))
         ])
+
         self.embedding = nn.ModuleList([nn.Sequential(
-            nn.Conv2d(1, self.d_dim__list[i], kernel_size=k, stride=s),
+            nn.Conv2d(1, self.dim_list[i], kernel_size=k, stride=s),
             nn.Flatten(start_dim=2)
         ) for i, (k, s) in enumerate(zip(self.kernel_list, self.stride_list))
         ])
+
         self.backbone = nn.ModuleList([nn.Sequential(
-            TSTiEncoder(c_in, patch_num=token, patch_len=self.d_dim__list[i], max_seq_len=max_seq_len,
+            TSTiEncoder(c_in, patch_num=token, patch_len=self.dim_list[i], max_seq_len=max_seq_len,
                         n_layers=n_layers, d_model=d_model, n_heads=n_heads, d_k=d_k, d_v=d_v, d_ff=d_ff,
                         norm=norm, attn_dropout=attn_dropout, dropout=dropout, act=act,
                         key_padding_mask=key_padding_mask, padding_var=padding_var,
@@ -63,15 +66,17 @@ class PDF_backbone(nn.Module):
             nn.Linear(self.tokens_list[i] * d_model, context_window)
             if self.tokens_list[i] * d_model != context_window else nn.Identity()
         ) for i, token in enumerate(self.tokens_list)])
+        
         self.wo_conv = wo_conv
         self.serial_conv = serial_conv
+
         if not self.wo_conv:
             self.conv = nn.ModuleList([nn.Sequential(*[
                 nn.Sequential(nn.Conv1d(n, n, kernel_size=i, groups=n, padding=i//2), nn.SELU())
                 for i in kernel_list],
                 nn.Dropout(fc_dropout),
                 nn.Flatten(start_dim=-2),
-            )for p, n in zip(period, self.period__len)])
+            ) for n in self.period_len])
 
         self.head = Head(context_window, len(period), target_window, head_dropout=head_dropout, Concat=not add)
 
@@ -111,6 +116,7 @@ class PDF_backbone(nn.Module):
                 glo = self.backbone[i](glo)
                 res.append(glo + loc)
 
+        # denorm
         z = self.head(res)
         z = z.permute(0, 2, 1)
         z = self.revin_layer(z, 'denorm')
