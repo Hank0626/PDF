@@ -40,15 +40,17 @@ parser.add_argument('--pred_len', type=int, default=96, help='prediction sequenc
 # each variate(channel) individually')
 
 # PatchTST
-parser.add_argument('--fc_dropout', type=float, default=0.05, help='fully connected dropout')
+parser.add_argument('--fc_dropout', type=float, default=0.0, help='fully connected dropout')
 parser.add_argument('--head_dropout', type=float, default=0.0, help='head dropout')
 
-parser.add_argument('--d_dim', type=int, nargs='+', default=None, help='patch dim')
-parser.add_argument('--persevere', type=int, default=96, help='len of new sequence not change')
+parser.add_argument('--add', action='store_true', default=False, help='add')
+parser.add_argument('--wo_conv', action='store_true', default=False, help='without convolution')
+parser.add_argument('--serial_conv', action='store_true', default=False, help='serial convolution')
+
+parser.add_argument('--kernel_list', type=int, nargs='+', default=[3, 7, 9], help='kernel size list')
 parser.add_argument('--patch_len', type=int, nargs='+', default=[16], help='patch high')
 parser.add_argument('--period', type=int, nargs='+', default=[24, 12], help='period list')
 parser.add_argument('--stride', type=int, nargs='+', default=None, help='stride')
-parser.add_argument('--period_mean', action='store_true', default=False, help='use mean merge')
 
 parser.add_argument('--padding_patch', default='end', help='None: None; end: padding on the end')
 parser.add_argument('--revin', type=int, default=1, help='RevIN; True 1 False 0')
