@@ -1,4 +1,4 @@
-# Periodicity Decoupling Framework for Long-term Series Forecasting
+# Periodicity Decoupling Framework for Long-term Series Forecasting 🚀
 
 This is an official implementation of [Periodicity Decoupling Framework for Long-term Series Forecasting](https://openreview.net/pdf?id=dp27P5HBBt).
 
@@ -50,7 +50,7 @@ After training:
 ## 📚 Citation
 If you find this repo useful, please consider citing our paper as follows:
 ```
-@article{liu2023wftnet,
+@article{dai2024period,
   title={Periodicity Decoupling Framework for Long-term Series Forecasting},
   author={Dai, Tao and Wu, Beiliang and Liu, Peiyuan and Li, Naiqi and Bao, Jigang and Jiang, Yong and Xia, Shu-Tao},
   journal={International Conference on Learning Representations},
