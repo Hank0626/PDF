@@ -63,7 +63,11 @@ Special thanks to the following repositories for their invaluable code and datas
 
 - [https://github.com/thuml/Autoformer](https://github.com/thuml/Autoformer)
 - [https://github.com/yuqinie98/PatchTST](https://github.com/yuqinie98/PatchTST)
+- [https://github.com/Thinklab-SJTU/Crossformer](https://github.com/Thinklab-SJTU/Crossformer)
+- [https://github.com/wanghq21/MICN](https://github.com/wanghq21/MICN)
+- [https://github.com/thuml/Time-Series-Library](https://github.com/thuml/Time-Series-Library)
 - [https://github.com/MAZiqing/FEDformer](https://github.com/MAZiqing/FEDformer)
+- [https://github.com/zhouhaoyi/Informer2020](https://github.com/zhouhaoyi/Informer2020)
 
 ## 📩 Contact
 If you have any questions, please contact [lpy23@mails.tsinghua.edu.cn](lpy23@mails.tsinghua.edu.cn) or submit an issue.
