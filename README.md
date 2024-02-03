@@ -6,6 +6,12 @@ This is an official implementation of [Periodicity Decoupling Framework for Long
 
 - [2024-01-15] 🎉 Our paper has been accepted by ICLR 2024.
 
+## 🌟 Results
+
+Quantitatively, compared with Transformer-based models, PDF(720) yields an overall **14.59**% reduction in MSE and **10.77**% reduction in MAE. Compared with CNN-based models, PDF(720) yields an overall **24.61**% reduction in MSE and **19.91**% reduction in MAE. Compared with Linear-based models, PDF(720) yields an overall **7.05**% reduction in MSE and **5.51**% reduction in MAE.
+
+![](./assest/result.png)
+
 ## 🛠 Prerequisites
 
 Ensure you are using Python 3.9 and install the necessary dependencies by running:
