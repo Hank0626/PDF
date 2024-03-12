@@ -25,17 +25,13 @@ pip install -r requirements.txt
 Begin by downloading the required datasets. All datasets are conveniently available at [Autoformer](https://drive.google.com/drive/folders/1ZOYpTUa82_jCcxIdTmyr0LXQfvaM9vIy). Create a separate folder named `./dataset` and neatly organize all the csv files as shown below:
 ```
 dataset
-├── electricity
-│   └── electricity.csv
-├── ETT-small
-│   ├── ETTh1.csv
-│   ├── ETTh2.csv
-│   ├── ETTm1.csv
-│   └── ETTm2.csv
-├── traffic
-│   └── traffic.csv
-└── weather
-    └── weather.csv
+├── electricity.csv
+├── ETTh1.csv
+├── ETTh2.csv
+├── ETTm1.csv
+├── ETTm2.csv
+├── traffic.csv
+├── weather.csv
 ```
 
 ## 💻 Training
