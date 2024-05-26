@@ -1,6 +1,12 @@
 # Periodicity Decoupling Framework for Long-term Series Forecasting 🚀
 
-This is an official implementation of [Periodicity Decoupling Framework for Long-term Series Forecasting](https://openreview.net/pdf?id=dp27P5HBBt).
+<div align="left">
+  
+**[<a href="https://openreview.net/pdf?id=dp27P5HBBt">Paper Page</a>]**
+**[<a href="https://zhuanlan.zhihu.com/p/699708089">知乎中文解读</a>]**
+
+</div>
+
 
 ## 📰 News
 
