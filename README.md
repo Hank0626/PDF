@@ -4,6 +4,7 @@
   
 **[<a href="https://openreview.net/pdf?id=dp27P5HBBt">Paper Page</a>]**
 **[<a href="https://zhuanlan.zhihu.com/p/699708089">知乎中文解读</a>]**
+**[<a href="https://mp.weixin.qq.com/s/Zlz3EfP26r-50CuJtIgurw">时序人中文解读</a>]**
 
 </div>
 
